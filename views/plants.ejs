@@ -1,0 +1,12 @@
+<%- include('partials/header') %>
+
+<h1>PLANTS</h1>
+
+<% plants.forEach(function(plants){ %>
+    <div>
+        <h4><%= plants.name %></h4>
+        <img src="<%= plants.image %>">
+    </div>
+<% }); %>
+
+<%- include('partials/footer') %> 
