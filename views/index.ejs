@@ -1,0 +1,16 @@
+<%- include('partials/header') %>
+
+<h1>PLANTS</h1>
+<a href="/plants/new">Add new plant</a>
+
+<% plants.forEach(function(plant){ %>
+    <div>
+        <h4><%= plant.name %></h4>
+        <img src="<%= plant.image %>">
+        <p>
+            <a href="/plants/<%= plant._id %>" class="btn btn-lg btn-primary">View</a>
+        </p>
+    </div>
+<% }); %>
+
+<%- include('partials/footer') %>

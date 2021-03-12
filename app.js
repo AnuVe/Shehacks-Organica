@@ -49,7 +49,7 @@ app.get("/plants",function(req,res){
         if(err) {
             console.log(err);
         } else {
-            res.render("plants", {plants: allplants});        
+            res.render("index", {plants: allplants});           
         }
     });
 });
@@ -72,6 +72,16 @@ app.get("/plants/new",function(req,res){
     res.render("new.ejs");
 });
 
+app.get("/plants/:id", function(req, res) {
+    Plant.findById(req.params.id, function(err, foundPlant) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.render("show",{plant: foundPlant});
+        }
+    });
+});
+
 const port = process.env.PORT || 3000;
 
-app.listen(port, () => console.log('Server started on port ${port}'));
+app.listen(port, () => console.log(`Server started on port ${port}`));
