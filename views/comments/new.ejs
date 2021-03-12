@@ -1,0 +1,11 @@
+<%- include('../partials/header') %>
+
+<h1>NEW COMMENT to <%= plant.name %></h1>
+
+<form action="/plants/<%= plant._id %>/comments" method="POST">
+    <input type="text" name="comment[text]" placeholder="name">
+    <input type="text" name="comment[author]" placeholder="image url">
+    <button>Submit!!</button>
+</form>
+
+<%- include('../partials/footer') %> 
