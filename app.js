@@ -9,6 +9,10 @@ var express = require("express"),
     User = require("./models/user.js"),
     seedDB = require("./seeds")
 
+var commentRoutes = require("./routes/comments"),
+    plantRoutes = require("./routes/plants"),
+    indexRoutes = require("./routes/index");
+
 app.use(bodyParser.urlencoded({extended:true}));
 app.use( express.static( "public" ) );
 app.set("view engine","ejs");
@@ -39,134 +43,9 @@ app.use(function(req, res, next){
     next();
 });
 
-/*var plants=[
-    {name:"Alovera",image:"https://i.ytimg.com/vi/AHlJuY0bagA/maxresdefault.jpg"},
-    {name: "Neem",image: "https://images.unsplash.com/photo-1564505676257-57af8f7e43ab?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8bmVlbSUyMHBsYW50fGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"}
-]*/
-
-/*Plant.create(
-    {
-        name: "Alovera",
-        image: "https://i.ytimg.com/vi/AHlJuY0bagA/maxresdefault.jpg"
-    }, function(err, plant) {
-        if(err) {
-            console.log(err)
-        } else {
-            console.log("Newly created plant");
-            console.log(plant);
-        }
-    });*/
-
-    app.get("/",function(req,res){
-    res.render("landing");
-});
-
-app.get("/plants",function(req,res){
-    Plant.find({}, function(err, allplants){
-        if(err) {
-            console.log(err);
-        } else {      
-            res.render("plants/index", {plants: allplants});        
-        }
-    });
-});
-
-app.post("/plants",function(req,res){
-    //res.send("POST");
-    var name = req.body.name;
-    var image = req.body.image;
-    var newPlant = {name:name, image:image}
-    Plant.create(newPlant, function(err, newlyCreated) {
-        if(err) {
-            console.log(err);
-        } else {
-            res.redirect("/plants");
-        }
-    });
-});
-
-app.get("/plants/add/new",function(req,res){
-    res.render("plants/new");
-});
-
-app.get("/plants/:id", function(req, res) {
-        Plant.findById(req.params.id).populate("comments").exec(function(err, foundPlant) {
-        if(err) {
-            console.log(err);
-        } else {
-            res.render("plants/show",{plant: foundPlant});
-        }
-    });
-});
-
-app.get("/plants/:id/comments/new", isLoggedIn, function(req,res){
-    Plant.findById(req.params.id, function(err,plant){
-        if(err){
-            console.log(err);
-        } else{
-            res.render("comments/new",{plant:plant});
-        }
-    })
-});
-
-app.post("/plants/:id/comments", isLoggedIn, function(req,res){
-    Plant.findById(req.params.id,function(err,plant){
-        if(err){
-            console.log(err);
-            res.redirect("/plants");
-        } else{
-            Comment.create(req.body.comment,function(err,comment){
-                if(err){
-                    console.log(err);
-                } else{
-                    plant.comments.push(comment);
-                    plant.save();
-                    res.redirect('/plants/'+plant._id);
-                }
-            });
-        }
-    });
-});
-
-app.get("/register", function(req, res) {
-    res.render("register");
-})
-
-app.post("/register", function(req,res) {
-    var newUser = new User({username: req.body.username});
-    User.register(newUser, req.body.password, function(err, user) {
-        if(err) {
-            console.log(err);
-            return res.render("register")
-        }
-        passport.authenticate("local")(req, res, function() {
-            res.redirect("/plants");
-        });
-    });
-});
-
-app.get("/login", function(req, res) {
-    res.render("login");
-});
-
-app.post("/login", passport.authenticate("local", 
-    {
-        successRedirect: "/plants",
-        failureRedirect: "/login"
-    }), function(req, res) {
-});
-
-app.get("/logout", function(req, res) {
-    req.logout();
-    res.redirect("/plants");
-});
-
-function isLoggedIn(req, res, next) {
-    if(req.isAuthenticated()) {
-        return next();
-    }
-    res.redirect("/login");
-}
+app.use("/",indexRoutes);
+app.use("/plants",plantRoutes);
+app.use("/plants/:id/comments",commentRoutes);
 
 const port = process.env.PORT || 3000;
 
