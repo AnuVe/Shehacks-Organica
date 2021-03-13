@@ -53,11 +53,12 @@ module.exports = (upload) => {
         //console.log(req.file);
         var desc = req.body.description;
         var plantType = req.body.plantType;
+        var city = req.body.city;
         var author = {
             id: req.user._id,
             username: req.user.username
         }
-        var newPlant = {description: desc, author: author, plantType:plantType, file:req.file}
+        var newPlant = {description:desc, plantType:plantType, city:city, author:author, file:req.file}
         Plant.create(newPlant, function(err, newlyCreated) {
             if(err) {
                 console.log(err);

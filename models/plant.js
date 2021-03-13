@@ -19,7 +19,8 @@ var plantSchema = new mongoose.Schema({
     ],
     file: { 
         type: Object
-    }
+    },
+    city: String
 });
 
 module.exports=mongoose.model("plants",plantSchema);
