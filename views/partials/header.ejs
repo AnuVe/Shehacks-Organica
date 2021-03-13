@@ -4,8 +4,81 @@
         <title>ORGANICA</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+        </script>
+        <link rel="stylesheet" type="text/css" href="./organica.css">
+        <style>
+            element.style {
+                background-color:#f8f9fa;
+            }
+            .navbar-light .navbar-brand {
+                color: #A05C2A;
+            }
+            body{
+                
+                font-family: 'Poppins', sans-serif;
+            }
+            html{
+	            height: 100%;
+            }
+            .btn-primary {
+                color: #fff;
+                background-color:#A05C2A;
+                border-color: #A05C2A;
+                align-self: center;
+            }
+        </style>
     </head>
     <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="background-color: #ffffff;">
+            <div class="container">
+              <a class="navbar-brand" href="http://localhost:3000">ORGANICA</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/aboutus">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://localhost:3000/plants/add/new">Add your plant</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Select your plant
+                            </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="http://localhost:3000/plants/plantType/a/tulsi">Tulsi</a></li>
+                                    <li><a class="dropdown-item" href="http://localhost:3000/plants/plantType/a/aloevera">Aloevera</a></li>
+                                    <li><a class="dropdown-item" href="http://localhost:3000/plants/plantType/a/curryLeaves">CurryLeaves</a></li>
+                                    <li><a class="dropdown-item" href="http://localhost:3000/plants/plantType/a/neem">Neem</a></li>
+                                    <li><a class="dropdown-item" href="http://localhost:3000/plants/plantType/a/mulethi">Mulethi</a></li>
+                                    <li><a class="dropdown-item" href="http://localhost:3000/plants/plantType/a/ashwagandha">Ashwagandha</a></li>
+                                    <li><a class="dropdown-item" href="http://localhost:3000/plants/plantType/a/turmeric">Turmeric</a></li>
+                                    <li><a class="dropdown-item" href="http://localhost:3000/plants/plantType/a/giloy">Giloy</a></li>
+                                    <li><a class="dropdown-item" href="http://localhost:3000/plants/plantType/a/mint">Mint</a></li>
+                                </ul>
+                        </li>
+                    </ul>
+                        <ul class="navbar-nav navbar-right">
+                            <% if(!currentUser) { %>
+                                <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/register">Signup</a></li>
+                            <% } else { %>
+                                <li><a href="#">Signed In As <%= currentUser.username %></a></li>
+                                <li><a href="/logout">Logout</a></li>
+                            <% } %>
+                        </ul>
+                </div><!-- collapsable contents -->
+            </div> <!-- navbar fluid -->
+        </nav>
+    </body>
+</html>
+                     
+                        
+           
+          
+                      
+              
