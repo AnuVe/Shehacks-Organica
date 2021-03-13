@@ -20,7 +20,8 @@ var express = require("express"),
 var commentRoutes = require("./routes/comments"),
     plantRoutes = require("./routes/plants"),
     indexRoutes = require("./routes/index"),
-    imageRouter = require("./routes/plantPost");
+    imageRouter = require("./routes/plantPost"),
+    aboutRoutes = require("./routes/aboutus");
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json()); 
@@ -75,6 +76,7 @@ app.use(function(req, res, next){
 
 app.use('/', imageRouter(upload));
 app.use("/",indexRoutes);
+app.use("/", aboutRoutes);
 app.use("/plants",plantRoutes);
 app.use("/plants/:id/comments",commentRoutes);
 
