@@ -1,15 +1,51 @@
-<%- include('../partials/header') %>
+<%- include("../partials/header"); %>
 
-<h1><%= plant.name %> </h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="card margin">
+                <img class="img-thumbnail img-responsive" src="<%=plant.image%>">
+                <div class="caption-full padding">
+                    <h4><a><%= plant.name %></a></h4>
+                    <p><%= plant.description %></p>
+                    <p>
+                        <em>Submitted By <%= plant.author.username %></em>
+                    </p>
+                    <% if(currentUser && plant.author.id.equals(currentUser._id)) { %>
+                        <a class="btn btn-warning btn-xs" href="/plants/<%= plant._id %>/edit">Edit</a>
+                        <form id="form-delete-inline" action="/plants/<%= plant._id %>?_method=delete" method="post">
+                            <button class="btn btn-xs btn-danger">Delete</button>
+                        </form>
+                    <% } %>    
+                </div>
+            </div>
+            <div class="card">
+                <div class="text-right">
+                    <div class="card-header">
+                        <a class="btn btn-success" href="/plants/<%= plant._id %>/comments/new">Add a new comment</a>
+                    </div>
+                </div>
+                <% plant.comments.forEach(function(comment){ %>
+                    <div class="row padding">
+                        <div class="col-md-12">
+                            <strong><%= comment.author.username %></strong>
+                            <p>
+                                <%= comment.text %>
+                            </p>
+                            <% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
+                                <a class="btn btn-xs btn-warning" href="/plants/<%= plant._id %>/comments/<%= comment._id %>/edit">
+                                    Edit
+                                </a>
+                                <form id="form-delete-inline" action="/plants/<%= plant._id %>/comments/<%= comment._id %>?_method=delete" method="post">
+                                    <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                </form>
+                            <% } %>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+</div>
 
-<img src="<%= plant.image %>">
-
-<p>
-    <a href="/plants/<%= plant._id %>/comments/new">Add new Comment</a>
-</p>
-
-<% plant.comments.forEach(function(comment){ %>
-    <p><%= comment.author %> - <%= comment.text %> </p>
-<% }) %>
-
-<%- include('../partials/footer') %> 
+<%- include("../partials/footer"); %>

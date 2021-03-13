@@ -1,0 +1,24 @@
+<%- include("../partials/header.ejs"); %>
+
+<div class="text-center container">
+    <h1>Edit <%= plant.name %></h1>
+    <div style="width:30%; margin:25px auto;">
+        <form action="/plants/<%= plant._id %>?_method=put" method="post">
+            <div class="form-group">
+                <input class="form-control" type="text" name="plant[name]" placeholder="name" value="<%= plant.name %>">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="plant[image]" placeholder="image url" value="<%= plant.image %>">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="plant[description]" placeholder="description" value="<%= plant.description %>">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-lg btn-primary btn-block">Submit!</button>
+            </div>
+        </form>
+        <a href="/plants">Go Back</a>
+    </div>
+</div>
+
+<%- include("../partials/footer.ejs"); %>
