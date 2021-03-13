@@ -1,16 +1,116 @@
 <%- include('../partials/header') %>
-
-<h1>PLANTS</h1>
-<a href="/plants/add/new">Add new plant</a>
-
-<% plants.forEach(function(plant){ %>
-    <div>
-        <h4><%= plant.name %></h4>
-        <img src="<%= plant.image %>">
-        <p>
-            <a href="/plants/<%= plant._id %>" class="btn btn-lg btn-primary">View</a>
-        </p>
+<style>
+    .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .img-thumbnail a>img, .img-thumbnail>img {
+    display: block;
+    max-width: 100%;
+    height: 270px;
+    
+  }
+    .img-thumbnail{
+        margin-top: 10%;
+        margin-bottom: 10%;
+    }
+    #plant-types{
+        padding-block: 20px;
+    }
+    p{
+        padding-block: 20px;
+        text-align: center;
+    }
+    h1{
+        text-align: center;
+        padding-top: 70px;
+    }
+    h3{
+        text-align: center;
+        margin-left: -25%;
+        padding-top: 20px;
+    }
+    a{
+        color: black;
+        text-decoration: none;
+        text-align: center;
+    }
+    h2{
+        text-align: center;
+    }
+    img {
+        width: 100%;
+    }
+/* body{
+    background-color: cornsilk;
+} */
+.col-lg-4 col-sm-6{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+plants-grid{
+    padding-bottom: 40px;
+}
+ </style>
+    <div class="container">
+        <h1>PLANTS/CATEGORIES</h1>
+        <div class="row" id="plants-grid">
+            <div class="col-lg-4 col-sm-6">
+              <div class="img-thumbnail" alt="...">
+                <img src="https://www.thespruceeats.com/thmb/EEd5zFv-FqOoXTlHogaKQvr65ek=/2119x1415/filters:fill(auto,1)/Tulsiplant-GettyImages-802852106-597032109abed50011e88d1d.jpg">
+                <h2><a href="/plants/plantType/a/tulsi">Tulsi</a></h2> 
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+              <div class="img-thumbnail" alt="...">
+                <img src="https://cdn.pixabay.com/photo/2014/03/02/05/27/aloe-vera-277948__340.jpg">
+                <h2><a href="/plants/plantType/a/aloevera">Aloe Vera</a></h2>
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+              <div class="img-thumbnail" alt="...">
+                <img src="http://suburbantomato.com/wp-content/uploads/2012/02/2012-Jan-006.jpg">
+                <h2><a href="/plants/plantType/a/curryLeaves">Curry Leaves</a></h2>
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+              <div class="img-thumbnail"alt="...">
+                <img src="https://newsd.in/wp-content/uploads/2019/02/43730-neem-leaves.jpg">
+                <h2><a href="/plants/plantType/a/neem">Neem</a></h2>
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+              <div class="img-thumbnail"alt="...">
+                <img src="https://ayushvedah.com/admin/resizer/uploads/0884408001570470787.jpg">
+                <h2><a href="/plants/plantType/a/mulethi">Mulethi</a></h2>
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+              <div class="img-thumbnail"alt="...">
+                <img src="https://i.ndtvimg.com/i/2015-09/ashwagandha-625_625x350_81442907406.jpg">
+                <h2><a href="/plants/plantType/a/ashwagandha">Ashwagandha</a></h2>
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="img-thumbnail"alt="...">
+                  <img src="https://cdn-prod.medicalnewstoday.com/content/images/articles/327/327455/turmeric-root-and-powder.jpg">
+                  <h2><a href="/plants/plantType/a/turmeric">Turmeric</a></h2>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="img-thumbnail"alt="...">
+                  <img src="https://i.pinimg.com/736x/81/b5/7d/81b57d0205c02eca0b5892467df9cf6c.jpg">
+                  <h2><a href="/plants/plantType/a/giloy">Giloy</a></h2>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="img-thumbnail"alt="...">
+                  <img src="https://images.unsplash.com/photo-1606730304654-547d21c7b2b7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=704&q=80">
+                  <h2><a href="/plants/plantType/a/mint">Mint</a></h2>
+                </div>
+            </div>
+         
+        </div>
     </div>
-<% }); %>
+   
+<%- include('../partials/footer') %>
+        
 
-<%- include('../partials/footer') %> 
+       
+    
