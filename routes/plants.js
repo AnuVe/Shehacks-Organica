@@ -13,7 +13,8 @@ router.get("/",function(req,res){
     });
 });
 
-router.post("/",middleware.isLoggedIn,function(req,res){
+//post route of plants is present in plantPost.js
+/*router.post("/",middleware.isLoggedIn,function(req,res){
     //res.send("POST");
     var name = req.body.name;
     var image = req.body.image;
@@ -30,13 +31,24 @@ router.post("/",middleware.isLoggedIn,function(req,res){
             res.redirect("/plants");
         }
     });
-});
+});*/
 
 router.get("/add/new",middleware.isLoggedIn, function(req,res){
     res.render("plants/new");
 });
 
-router.get("/:id", function(req, res) {
+router.get('/plantType/a/:plantType', function(req, res) {
+    console.log(req.params.plantType);
+    Plant.find({}, function(err, all) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.render("plants/showAll", {plants: all, type: req.params.plantType});
+        }
+    });
+})
+
+router.get("/:id", middleware.isLoggedIn, function(req, res) {
     Plant.findById(req.params.id).populate("comments").exec(function(err, foundPlant) {
         if(err) {
             console.log(err);

@@ -2,7 +2,6 @@ var mongoose=require("mongoose");
 const comment = require("./comment");
 
 var plantSchema = new mongoose.Schema({
-    image: String,
     description: String,
     plantType: String,
     author:{
@@ -17,7 +16,11 @@ var plantSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "Comment"
         }
-    ]
+    ],
+    file: { 
+        type: Object
+    },
+    city: String
 });
 
 module.exports=mongoose.model("plants",plantSchema);

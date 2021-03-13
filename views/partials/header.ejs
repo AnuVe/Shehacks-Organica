@@ -40,7 +40,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/aboutus">About</a>
+                            <a class="nav-link" aria-current="page" href="/aboutus">About Us</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/plants/add/new">Add your plant</a>
@@ -67,8 +67,8 @@
                                 <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
                                 <li class="nav-item"><a class="nav-link" href="/register">Signup</a></li>
                             <% } else { %>
-                                <li><a href="#">Signed In As <%= currentUser.username %></a></li>
-                                <li><a href="/logout">Logout</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Signed In As <%= currentUser.username %></a></li>
+                                <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
                             <% } %>
                         </ul>
                 </div><!-- collapsable contents -->
