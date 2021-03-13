@@ -1,29 +1,110 @@
 <%- include("../partials/header"); %>
+<style>
+    .img-thumbnail{
+        margin-bottom: 10%;
+        
+        background-color:#f8f9fa ;
+        height: 300px;
+        max-width: 100%;
+    }
+    #img-card{
+        vertical-align: middle;
+        height: 350px;
+        width: 500px;
+        margin-bottom: 30px;
+}
+.card-horizontal {
+        display: flex;
+        flex: 1 1 auto;
+    }
+    .card{
+        height: 350px;
+        background-color: #f8f9fa;
+        margin-bottom: 70px;
+        margin-top: 90px;
+    }
+    .btn.btn-round {
+    border-radius: 40px;
+}
 
-<div class="container">
+.btn.btn-primary {
+    background: #A05C2A;
+    border-color: #A05C2A;
+    color: #fff;
+    border-radius: 40px;
+    width: 200px;
+    margin-left: 20px;
+    
+}
+.button-line{
+    display: flex;
+    justify-content: center;
+}
+.btn-anchor{
+    color: #0d6efd;
+    text-decoration: underline;
+}
+.btn-comment{
+    display: flex;
+}
+.btn.btn-anchor{
+    margin-left: 1px;
+}
+</style>
+
+<!-- <div class="container">
     <div class="row">
         <div class="col-md-9">
             <div class="card margin">
-                <img class="img-thumbnail img-responsive" src="<%=plant.image%>">
+                <img class="img-thumbnail img-responsive" src="/image/<%=plant.file.filename%>">
                 <div class="caption-full padding">
                     <h4><a><%= plant.name %></a></h4>
+                    <p>Located in: <%=plant.city%></p>
                     <p><%= plant.description %></p>
                     <p>
                         <em>Submitted By <%= plant.author.username %></em>
                     </p>
-                    <% if(currentUser && plant.author.id.equals(currentUser._id)) { %>
+                     -->
+                     <div class="container">
+                        <div class="row">
+                            <div class="col-12 mt-3">
+                                <div class="card">
+                                    <div class="card-horizontal">
+                                        <div class="img-square-wrapper">
+                                            <img  src="/image/<%=plant.file.filename%>" alt="Card image cap" id="img-card">
+                                        </div>
+                                        <div class="container text-center">
+                                            <div class="card-body">
+                                                <h2 class="card-title"><p><%=plant.plantType.toUpperCase() %></p>
+                                                    <p>Located in: <%=plant.city%></p>
+                                                </h2>
+                                                <p class="card-text"><%= plant.description %>
+                                                    <p><em>Submitted By <%= plant.author.username %></em></p>
+                                                </p>
+                                                <% if(currentUser && plant.author.id.equals(currentUser._id)) { %> 
+                                                    <div class="button-line"><a class="btn btn-primary" href="/plants/<%= plant._id %>/edit">Edit</a>
+                                                    <form id="form-delete-inline" action="/plants/<%= plant._id %>?_method=delete" method="post">
+                                                        <button class="btn btn-primary">Delete</button>
+                                                    </form></div>
+                                                <% } %> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                    
+                    <!-- <% if(currentUser && plant.author.id.equals(currentUser._id)) { %> 
                         <a class="btn btn-warning btn-xs" href="/plants/<%= plant._id %>/edit">Edit</a>
                         <form id="form-delete-inline" action="/plants/<%= plant._id %>?_method=delete" method="post">
                             <button class="btn btn-xs btn-danger">Delete</button>
                         </form>
-                    <% } %>    
-                </div>
-            </div>
-            <div class="card">
-                <div class="text-right">
-                    <div class="card-header">
+                    <% } %>     -->
+            
+                <div class="text-center">
+                    
                         <a class="btn btn-success" href="/plants/<%= plant._id %>/comments/new">Add a new comment</a>
-                    </div>
+                    
                 </div>
                 <% plant.comments.forEach(function(comment){ %>
                     <div class="row padding">
@@ -32,20 +113,21 @@
                             <p>
                                 <%= comment.text %>
                             </p>
-                            <% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
-                                <a class="btn btn-xs btn-warning" href="/plants/<%= plant._id %>/comments/<%= comment._id %>/edit">
+                            <% if(currentUser && comment.author.id.equals(currentUser._id)) { %> 
+                               <div class="btn-comment" > <a  class= "btn btn-anchor" href="/plants/<%= plant._id %>/comments/<%= comment._id %>/edit">
                                     Edit
                                 </a>
                                 <form id="form-delete-inline" action="/plants/<%= plant._id %>/comments/<%= comment._id %>?_method=delete" method="post">
-                                    <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                    <input type="submit" class="btn btn-anchor" value="Delete">
                                 </form>
+                            </div>
                             <% } %>
                         </div>
                     </div>
                 <% }); %>
             </div>
-        </div>
-    </div>
-</div>
+        
+   
+<a href="/plants">Go Back</a>
 
 <%- include("../partials/footer"); %>
