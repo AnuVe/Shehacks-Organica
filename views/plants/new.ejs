@@ -2,12 +2,24 @@
 
 <h1>NEW PLANT</h1>
 
-<form action="/plants" method="POST">
-    <input type="text" name="name" placeholder="name">
+<form action="/plants" method="POST" >
     <input type="text" name="image" placeholder="image">
-    <input type="text" name="description" placeholder="description">
+    <input type="text" name="description" placeholder="description (if you wish)"> 
+    <label for="plantType">Choose a plant:</label>
+
+    <select name="plantType">
+        <option value="tulsi">Tulsi</option>
+        <option value="aloevera">Aloevera</option>
+        <option value="curryLeaves">Curry Leaves</option>
+        <option value="neem">Neem</option>
+        <option value="mulethi">Mulethi</option>
+        <option value="ashwagandha">Ashwagandha</option>
+        <option value="turmeric">Turmeric</option>
+        <option value="giloy">Giloy</option>
+        <option value="mint">Mint</option>
+    </select>
     <button>Submit!!</button>
 </form>
 <a href="/plants">Go Back</a>
 
-<%- include('../partials/footer') %> 
+<%- include('../partials/footer') %>

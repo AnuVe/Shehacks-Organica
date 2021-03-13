@@ -1,0 +1,19 @@
+<%- include('../partials/header') %>
+   
+    <h1><%=type%></h1>
+    <h1><%=type%></h1>
+    
+    <% plants.forEach(function(plant){ %>
+        <% var type2=plant.plantType %>
+        <div>
+            <% if(type.toLowerCase()==type2.toLowerCase()) { %>
+                <img src="<%=plant.image %>">
+                <p><%=plant.description %> </p>
+                <a href="/plants/<%=plant._id %>">View</a>
+                <%=plant.plantType%>
+            <% } %>
+            <hr>
+        </div>
+    <% }); %>        
+
+<%- include('../partials/footer') %>

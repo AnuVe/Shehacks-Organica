@@ -1,9 +1,10 @@
 var mongoose=require("mongoose");
+const comment = require("./comment");
 
 var plantSchema = new mongoose.Schema({
-    name: String,
     image: String,
     description: String,
+    plantType: String,
     author:{
         id:{
             type: mongoose.Schema.Types.ObjectId,
