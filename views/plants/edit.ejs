@@ -3,12 +3,33 @@
 <div class="text-center container">
     <h1>Edit <%= plant.name %></h1>
     <div style="width:30%; margin:25px auto;">
-        <form action="/plants/<%= plant._id %>?_method=put" method="post">
+        <form action="/plants/<%= plant._id %>?_method=put" method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <input class="form-control" type="text" name="plant[name]" placeholder="name" value="<%= plant.name %>">
+                <label for="plantType">Choose a plant:</label>
+                <select id="p" name="plant[plantType]" class="form input">
+                    <% var plantsarr=["tulsi", "aloevera", "curryLeaves", "neem", "mulethi", "ashwagandha", "turmeric", "giloy", "mint"] %>
+                    <% for(var i=0; i<plantsarr.length; i++) { %>
+                        <% if(plantsarr[i]===plant.plantType) {%>
+                            <option value="<%=plantsarr[i]%>" selected> <%=plantsarr[i]%> </option>
+                        <% } else { %>
+                            <option value="<%=plantsarr[i]%>"> <%=plantsarr[i]%> </option>
+                        <% } %>
+                    <% } %>
+                </select>
             </div>
-            <div class="form-group">
-                <input class="form-control" type="text" name="plant[image]" placeholder="image url" value="<%= plant.image %>">
+            <div>
+                <select name="plant[city]" class="form input">
+                    <% var cityarr=["Ahmedabad", "Agra", "Amritsar", "Bangalore", "Bhopal", "Chennai", "Dehradun", "Delhi", "Gwalior", "Hyderabad", 
+                    "Indore", "Jaipur", "Jabalpur", "Jodhpur", "Kanpur", "Kolkata", "Lucknow", "Mumbai", "Muzaffarpur", "Nagpur", "Nashik", "Noida",
+                    "Patna", "Prayagraj", "Pune", "Raipur", "Surat", "Udaipur", "Vadodara", "Varanasi" ]%>
+                    <% for(var i=0; i<cityarr.length; i++) { %>
+                        <% if(cityarr[i]===plant.city) {%>
+                            <option value="<%=cityarr[i]%>" selected> <%=cityarr[i]%> </option>
+                        <% } else { %>
+                            <option value="<%=cityarr[i]%>"> <%=cityarr[i]%> </option>
+                        <% } %>
+                    <% } %>
+                </select>
             </div>
             <div class="form-group">
                 <input class="form-control" type="text" name="plant[description]" placeholder="description" value="<%= plant.description %>">
@@ -17,6 +38,7 @@
                 <button class="btn btn-lg btn-primary btn-block">Submit!</button>
             </div>
         </form>
+
         <a href="/plants">Go Back</a>
     </div>
 </div>
