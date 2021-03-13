@@ -11,7 +11,4 @@ var plantSchema = new mongoose.Schema({
     ]
 });
 
-
-var Plant = mongoose.model("Plant", plantSchema);
-
 module.exports=mongoose.model("plants",plantSchema);
