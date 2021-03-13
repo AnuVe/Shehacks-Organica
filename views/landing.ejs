@@ -1,9 +1,54 @@
 <%- include('partials/header') %>
+<style>
+   
+    body{
+        background-image:url("/images/bg_image.jpg");
+        background-size: cover;
+        background-position: center;
+        font-family: 'Poppins', sans-serif;
+        height: 100%;
+    }
+    html{
+        height: 100%;
+    }
+    #contents{
+        text-align: center;
+        padding-top: 26%;
+        /* color: #dddee0; */
+        padding-bottom: 40px;
+    }
+    h1{
+        font-weight: 300;
+        font-size: 8em;
+        color: #ffffff;
+    }
+    h4{
+        font-weight: 100;
+        font-size: 2em;
+        color: #eeeeee;
+        padding-bottom: 40 px;
+    }
+    .container{
+        min-height: 100%;
+    }
+   
+</style>
+<div class="container">
+    <div class="row">
+    <div class="col-lg-12">
+        <div id="contents">
+        <h1>ORGANICA</h1>
+        <h4>House Of Plants</h4>
+        <a class="btn btn-primary btn-lg" href="/plants" role="button">View Plants</a>
+    </div>
+</div>
+</div>
+</div>
 
-<h1>Landing Page!!</h1>
 
-<h2>ORGANICA</h2>
 
-<a href="/plants">View all Plants</a>
+<!-- <a href="/plants">View all Plants</a> -->
 
 <%- include('partials/footer') %>
+
+           

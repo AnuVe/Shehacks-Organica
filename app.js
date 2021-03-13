@@ -10,6 +10,7 @@ var express = require("express"),
     seedDB = require("./seeds")
 
 app.use(bodyParser.urlencoded({extended:true}));
+app.use( express.static( "public" ) );
 app.set("view engine","ejs");
 require('dotenv').config();
 
