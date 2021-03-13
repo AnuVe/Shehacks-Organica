@@ -1,11 +1,11 @@
 <%- include("../partials/header.ejs"); %>
 
-<div class="text-center container">
-    <h1>Create a new comment to <%= plant.name %></h1>
+<div class="text-center container"></div>
+    <h1>Edit comment</h1>
     <div style="width:30%; margin:25px auto;">
-        <form action="/plants/<%= plant._id %>/comments" method="post">
+        <form action="/plants/<%= plant_id %>/comments/<%= comment._id %>?_method=put" method="post">
             <div class="form-group">
-                <input class="form-control" type="text" name="comment[text]" placeholder="text">
+                <input class="form-control" type="text" name="comment[text]" value="<%= comment.text %>">
             </div>
             <div class="form-group">
                 <button class="btn btn-lg btn-primary btn-block">Submit!</button>
@@ -15,4 +15,4 @@
     </div>
 </div>
 
-<%- include("../partials/footer.ejs"); %>
+<%- include("../partials/footer.ejs"); %> 

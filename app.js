@@ -3,6 +3,7 @@ var express = require("express"),
     bodyParser = require("body-parser"), 
     passport = require("passport"),
     LocalStrategy = require("passport-local"),
+    methodOverride = require("method-override"),
     mongoose = require("mongoose"),
     Plant = require("./models/plant"),
     Comment=require("./models/comment"),
@@ -16,6 +17,7 @@ var commentRoutes = require("./routes/comments"),
 app.use(bodyParser.urlencoded({extended:true}));
 app.use( express.static( "public" ) );
 app.set("view engine","ejs");
+app.use(methodOverride("_method"));
 require('dotenv').config();
 
 const uri = process.env.MONGO_URL;
@@ -24,8 +26,6 @@ const connection = mongoose.connection;
 connection.once('open', () => {
     console.log("MongoDB database connection established successfully");
 });
-
-seedDB();
 
 app.use(require("express-session")({
     secret: "abcd",
